@@ -14,12 +14,12 @@ const Chart = () => {
     const redThres = 20;
     const yellowThres = 60;
 
-    const trueCount = 900;
+    const trueCount = 9030;
     const falseCount = 90;
 
     const value = Math.round(trueCount / (falseCount + trueCount) * 100);
 
-    const color = value > yellowThres ? "text-success" : value > redThres ? "text-warning" : "text-error";
+    const color = value > yellowThres ? "success" : value > redThres ? "warning" : "error";
 
 
     interface OnTopProps {
@@ -37,15 +37,15 @@ const Chart = () => {
 
       const LineProgress = ({value, color} : {value : number, color: string}) => (
         <div className="w-full bg-gray-200 rounded-full bg-gray-700 relative" style={{height: "1rem"}}>
-            <div className={"rounded-full " + color.replace("text", "bg")} style={{width: `${value}%`, height: "1rem"}} />
-            <p className={"absolute inset-0 font-semibold text-center leading-4"}  style={{top: "1px"}} >{value}%</p>
+            <div className={"rounded-full bg-" + color} style={{width: `${value}%`, height: "1rem"}} />
+            <p className={"absolute inset-0 font-semibold text-white text-center leading-4"} style={{top: "1px"}} >{value}%</p>
         </div>
       );
 
       const CircularProgress = ({value, color} : {value : number, color: string}) => (
         <OnTop>
         <div className="radial-progress text-gray-700" style={{"--value": 100, "--thickness": "1rem", "--size": "180px",}} role="progressbar" />
-            <div className={"radial-progress z-10 " + color} style={{"--value": value, "--thickness": "1rem", "--size": "180px",}} role="progressbar">
+            <div className={"radial-progress z-10 text-" + color} style={{"--value": value, "--thickness": "1rem", "--size": "180px",}} role="progressbar">
                 <p className="text-white text-3xl">{value}%</p>
             </div>
         </OnTop>
