@@ -6,16 +6,19 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['rubik']
+    }
   },
   plugins: [require("daisyui")],
   daisyui: {
     dir: "rtl",
-    themes: [{
-      light: {
-        ...require("daisyui/src/theming/themes")["[data-theme=light]"],
-        // "base-100": "#272829"
-      }
-    }]
+    // themes: [{
+    //   light: {
+    //     ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+    //     // "base-100": "#272829"
+    //   }
+    // }]
 
   }
 }
