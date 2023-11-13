@@ -9,7 +9,13 @@ declare module "react" {
     }
   }
 
-const Chart = () => {
+type tColor = "success" | "warning" | "error";
+
+interface iChart {
+    title: string
+}
+
+const Chart: React.FC<iChart> = ({title}) => {
     
     const redThres = 20;
     const yellowThres = 60;
@@ -19,7 +25,7 @@ const Chart = () => {
 
     const value = Math.round(trueCount / (falseCount + trueCount) * 100);
 
-    const color = value > yellowThres ? "success" : value > redThres ? "warning" : "error";
+    const color: tColor = value > yellowThres ? "success" : value > redThres ? "warning" : "error";
 
     interface OnTopProps {
         children: [ReactNode, ReactNode];
@@ -34,7 +40,7 @@ const Chart = () => {
           </div>
       );
 
-      const LineProgress = ({value, color} : {value : number, color: string}) => (
+      const LineProgress = ({value, color} : {value : number, color: tColor}) => (
         <div className="w-full bg-gray-200 rounded-full bg-gray-700 relative" style={{height: "1rem"}}>
             
             <div className={`rounded-full ${color === "success" ? "bg-success" : color === "warning" ? "bg-warning" : "bg-error"}`} style={{width: `${value}%`, height: "1rem"}} />
@@ -42,7 +48,7 @@ const Chart = () => {
         </div>
       );
 
-      const CircularProgress = ({value, color} : {value : number, color: string}) => (
+      const CircularProgress = ({value, color} : {value : number, color: tColor}) => (
         <OnTop>
         <div className="radial-progress text-gray-700" style={{"--value": 100, "--thickness": "1rem", "--size": "180px",}} role="progressbar" />
             <div className={`radial-progress z-10 ${color === "success" ? "text-success" : color === "warning" ? "text-warning" : "text-error"}`} style={{"--value": value, "--thickness": "1rem", "--size": "180px",}} role="progressbar">
@@ -53,12 +59,19 @@ const Chart = () => {
       
     return (
         <Paper bgcolor="bg-base-200" classnames="w-80 flex flex-col justify-center items-center gap-3 p-3">
-            <p className="text-center text-white text-2xl font-bold">כשירות נגמ"שים</p>
+            <p className="text-center text-white text-2xl font-bold">{title}</p>
+            <div className="collapse">
+                <input type="checkbox" />
+                <div className="collapse-title">
+                    <CircularProgress value={value} color={color} />
+                </div>
+                <div className="collapse-content">
+                    <LineProgress value={value} color={color}/>
+                    <LineProgress value={value} color={color}/>
+                    <LineProgress value={value} color={color}/>
 
-            <CircularProgress value={value} color={color} />
-            <LineProgress value={value} color={color}/>
-            <LineProgress value={value} color={color}/>
-            <LineProgress value={value} color={color}/>
+                </div>
+            </div>
 
 
  

@@ -88,10 +88,10 @@ function App() {
 
   return (
     <Sidebar navSections={navSections}>
-      <div className="flex gap-6">
-        <Chart />
-        <Chart />
-        <Chart />
+      <div className="flex items-start gap-6">
+        <Chart title='כשירות נגמ"שים'/>
+        <Chart title="רנדומלי"/>
+
       </div>
 
     </Sidebar>
