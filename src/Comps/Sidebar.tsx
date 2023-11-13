@@ -5,6 +5,7 @@ import AddUserIcon from "../assets/add_user.svg?react";
 import ToTeneTableIcon from "../assets/to_tene_table.svg?react";
 import HomepageIcon from "../assets/homepage.svg?react";
 import { ReactNode } from "react";
+import Paper from "./Paper";
 
 interface iSidebar {
     navSections: iNavSection[],
@@ -60,19 +61,20 @@ const NavItem = ({item} : {item: iNavItem}) => (
 const Sidebar: React.FC<iSidebar> = ({navSections, children}) => {
     return (
         <div className="grid sm:grid-cols-12 xl:grid-cols-10 h-screen gap-3 p-3">
-          <div className="col-span-1 rounded-2xl shadow-2xl bg-base-300 flex flex-col">
-            <BazakHeader />
+          <Paper classnames="col-span-1 flex flex-col">
+          <BazakHeader />
             <MainNavSection navSections={navSections} />
             <PressedButtonExample />
             <SidebarFooter />
-          </div>
+          </Paper>
+
           <div className="col-span-11 xl:col-span-9 flex flex-col gap-3 h-full ">
-          <div className="rounded-2xl shadow-2xl bg-base-300 h-20">
-            navbar
-          </div>
-          <div className="rounded-2xl shadow-2xl bg-base-300 h-full">
-            {children}
-          </div>
+            <Paper classnames="h-20">
+              <p className="text-center">סרגל ניווט - יכיל סרגל חיפוש, שם עמוד ומעבר בין זמינות\כשירות</p>
+            </Paper>
+          <Paper classnames="h-full">
+          {children}
+          </Paper>
           </div>
         </div>
       )
