@@ -14,7 +14,7 @@ interface iSidebar {
 
 
 const SidebarFooter = () => (
-    <div className="flex flex-col mt-auto mb-3 gap-3 p-2">
+    <div className="flex flex-col items-center mt-auto mb-3 gap-3 p-2">
       <button className="btn btn-outline w-full">
         <AddUserIcon className="fill-white"/>
         <p className="hidden xl:inline text-center ml-auto mr-6 text-white">רשום משתמש</p>
@@ -28,25 +28,25 @@ const SidebarFooter = () => (
   )
 
 const NavItem = ({item} : {item: iNavItem}) => (
-    <button className="btn rounded-none">
+    <button className="btn rounded-none w-full">
       <item.Icon />
       <p className="hidden xl:inline text-center ml-auto mr-6">{item.text}</p>
     </button>
   )
 
   const BazakHeader = () => (
-    <div className="flex justify-center items-center p-0 xl:px-4 my-4">
+    <div className="flex justify-center items-center p-0 gap-3 xl:px-4 my-3">
       <h1 className="hidden xl:inline font-bold	text-4xl text-white">מערכת בז"כ</h1>
-      <BazakIcon className="xl:h-32 xl:w-32" />
+      <BazakIcon className="xl:h-28 xl:w-28" />
     </div>
   );
 
   const MainNavSection = ({navSections} : {navSections: iNavSection[]}) => (
     navSections.map(section => (
-      <>
+      <div key={section.text}>
         <div className="divider">{section.text}</div>
         {section.items.map(navItem => <NavItem key={navItem.text} item={navItem} />)}
-      </>
+      </div>
     ))
   );
 
@@ -60,20 +60,20 @@ const NavItem = ({item} : {item: iNavItem}) => (
 
 const Sidebar: React.FC<iSidebar> = ({navSections, children}) => {
     return (
-        <div className="grid sm:grid-cols-12 xl:grid-cols-10 h-screen gap-3 p-3">
-          <Paper classnames="col-span-1 flex flex-col">
+        <div className="grid grid-cols-12 h-screen gap-3 p-3">
+          <Paper classnames="col-span-1 xl:col-span-2 flex flex-col">
           <BazakHeader />
             <MainNavSection navSections={navSections} />
             <PressedButtonExample />
             <SidebarFooter />
           </Paper>
 
-          <div className="col-span-11 xl:col-span-9 flex flex-col gap-3 h-full ">
+          <div className="col-span-11 xl:col-span-10 flex flex-col gap-3 h-full ">
             <Paper classnames="h-20">
               <p className="text-center">סרגל ניווט - יכיל סרגל חיפוש, שם עמוד ומעבר בין זמינות\כשירות</p>
             </Paper>
-          <Paper classnames="h-full">
-          {children}
+          <Paper classnames="h-full p-3">
+            {children}
           </Paper>
           </div>
         </div>

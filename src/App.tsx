@@ -88,8 +88,12 @@ function App() {
 
   return (
     <Sidebar navSections={navSections}>
-      כרטיסים?
-      <Chart />
+      <div className="flex gap-6">
+        <Chart />
+        <Chart />
+        <Chart />
+      </div>
+
     </Sidebar>
   )
 
