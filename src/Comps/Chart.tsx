@@ -57,15 +57,15 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
     // smarter will be to use two vertricl flexes
     const sidePrecentages = (
       <div className="join h-full join-vertical m-auto mr-4">
-        <div className="flex">
-          <div className="join-item w-3 h-10 bg-success"/>
-          <div className="pr-1.5 text-xs h-10 flex flex-col p-0 m-0 leading-none justify-between">
+        <div className="flex" style={{height: `${100 - yellowThres}%`}}>
+          <div className="join-item w-3 bg-success"/>
+          <div className="pr-1.5 text-xs flex flex-col p-0 m-0 leading-none justify-between">
             <p>100%</p>
             <p className="translate-y-1/2">{yellowThres}%</p>
           </div>
         </div>
-        <div className="join-item w-3 h-10 bg-warning" />
-        <div className="flex h-10">
+        <div className="join-item w-3 bg-warning" style={{height: `${yellowThres - redThres}%`}} />
+        <div className="flex" style={{height: `${redThres}%`}}>
           <div className="join-item w-3 h-full bg-error"/>
           <div className="pr-1.5 text-xs h-full flex flex-col p-0 m-0 leading-none justify-between">
             <p className="-translate-y-1/2">{redThres}%</p>
@@ -74,6 +74,15 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
         </div>
       </div>
     );
+
+    // const sidePrecentages = (
+    //   <div className="join h-full join-vertical m-auto mr-4">
+    //     <div className="join-item flex h-full grow">
+    //       <div className="h-40% bg-error w-3" />
+    //       <div className="h-40% bg-success w-3" />
+    //     </div>
+    //   </div>
+    // );
     
     return (
         <Paper bgcolor="bg-base-200" classnames="w-64 flex flex-col justify-center items-center gap-1 py-3">
@@ -82,7 +91,7 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
             <div className="collapse">
                 <input type="checkbox" />
                 <div className="collapse-title">
-                  <div className="flex">
+                  <div className="flex h-32">
                   <CircularProgress value={value} color={color} />
                   {sidePrecentages}
                   </div>
