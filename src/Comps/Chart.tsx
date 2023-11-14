@@ -48,8 +48,9 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
       const CircularProgress = ({value, color} : {value : number, color: tColor}) => (
         <OnTop>
         <div className="radial-progress text-gray-700" style={{"--value": 100, "--thickness": "0.5rem", "--size": "8rem",}} role="progressbar" />
-            <div className={`radial-progress ${color === "success" ? "text-success" : color === "warning" ? "text-warning" : "text-error"}`} style={{"--value": value, "--thickness": "0.5rem", "--size": "8rem",}} role="progressbar">
-                <p className="text-white text-2xl">{value}%</p>
+            <div className={`radial-progress text-center ${color === "success" ? "text-success" : color === "warning" ? "text-warning" : "text-error"}`} style={{"--value": value, "--thickness": "0.5rem", "--size": "8rem",}} role="progressbar">
+              <p className="text-white text-3xl">{value}%</p>
+              <p className="text-white">{`${trueCount}/${trueCount+falseCount}`}</p>
             </div>
         </OnTop>
       );
@@ -75,46 +76,45 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
       </div>
     );
 
-    // const sidePrecentages = (
-    //   <div className="join h-full join-vertical m-auto mr-4">
-    //     <div className="join-item flex h-full grow">
-    //       <div className="h-40% bg-error w-3" />
-    //       <div className="h-40% bg-success w-3" />
-    //     </div>
-    //   </div>
-    // );
+
+    const titles = (
+      <>
+        <div className="flex justify-between text-center">
+          <p className="text-xs">אחוזים לעומת שבוע שעבר </p>
+          <p className="text-white text-xl font-bold">{title}</p>
+          <p className="text-xs">צלילה</p>
+        </div>
+        <p className="">{description ? description : "מקט: 48930"}</p>
+      </>
+    );
+
+    const SubDataProgress = ({progress, title, subTitle} : {progress: number, title: string, subTitle: string}) => (
+      <>
+        <div className="text-center p-0 m-0 font-bold leading-none text-sm">
+          {title}
+          <span className="text-info mr-2">({subTitle})</span>
+        </div>
+        <LineProgress value={progress} color={color}/>
+      </>
+    )
     
     return (
         <Paper bgcolor="bg-base-200" classnames="w-64 flex flex-col justify-center items-center gap-1 py-3">
-            <p className="text-center text-white text-xl font-bold">{title}</p>
-            <p className="">{description ? description : "מקט: 48930"}</p>
-            <div className="collapse">
-                <input type="checkbox" />
-                <div className="collapse-title">
-                  <div className="flex h-32">
-                  <CircularProgress value={value} color={color} />
-                  {sidePrecentages}
-                  </div>
-                </div>
-                <div className="collapse-content flex flex-col mt-2 gap-2">
-                  <div className="text-center p-0 m-0 font-bold leading-none text-sm">
-                    נגמש בטיפול: 300
-                    <span className="text-info mr-2">(חלפים: 390)</span>
-                  </div>
-
-                  <LineProgress value={value} color={color}/>
-                  <div className="text-center p-0 m-0 font-bold leading-none text-sm">
-                    נגמש בטיפול: 300
-                    <span className="text-info mr-2">(חלפים: 390)</span>
-                  </div>
-                  <LineProgress value={value} color={color}/>
-                  <div className="text-center p-0 m-0 font-bold leading-none text-sm">
-                    נגמש בטיפול: 300
-                    <span className="text-info mr-2">(חלפים: 390)</span>
-                  </div>
-                  <LineProgress value={value} color={color}/>
-                </div>
+          {titles}
+          <div className="collapse">
+            <input type="checkbox" />
+            <div className="collapse-title">
+              <div className="flex h-32">
+              <CircularProgress value={value} color={color} />
+              {sidePrecentages}
+              </div>
             </div>
+            <div className="collapse-content flex flex-col mt-2 gap-2">
+              <SubDataProgress progress={30} title="נגמש בטיפול: 399" subTitle="חלקי חילוף: 30"/>
+              <SubDataProgress progress={30} title="נגמש בטיפול: 399" subTitle="חלקי חילוף: 30"/>
+              <SubDataProgress progress={30} title="נגמש בטיפול: 399" subTitle="חלקי חילוף: 30"/>
+            </div>
+          </div>
         </Paper>
     );
 
