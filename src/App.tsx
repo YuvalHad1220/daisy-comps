@@ -89,8 +89,8 @@ function App() {
   return (
     <Sidebar navSections={navSections}>
       <div className="flex items-start gap-6">
-        <Chart title='כשירות נגמ"שים'/>
-        <Chart title="רנדומלי"/>
+        <Chart title='כשירות מרכבה 4' trueCount={2} falseCount={23} />
+        <Chart title="רנדומלי" trueCount={30} falseCount={49} redThres={20} description="תיאור לשעון מודולרי"/>
 
       </div>
 
