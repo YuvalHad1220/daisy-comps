@@ -57,6 +57,17 @@ const NavItem = ({item} : {item: iNavItem}) => (
   </button>
   );
 
+  const navbar = (
+    <Paper classnames="h-20 flex w-full items-center px-3">
+      <p className="text-white text-lg font-bold">מאגדי על \ מאגדים \ מקט</p>
+      <input type="text" placeholder="חפש" className="mr-auto ml-8 input rounded-full input-sm w-42" />
+      <div className="rounded-full bg-base-100">
+        <button className="btn rounded-full btn-sm btn-primary ml-1">זמינות</button>
+        <button className="rounded-full btn btn-sm btn-ghost mr-1">כשירות</button>
+      </div>
+    </Paper>
+  )
+
 
 const Sidebar: React.FC<iSidebar> = ({navSections, children}) => {
     return (
@@ -69,12 +80,11 @@ const Sidebar: React.FC<iSidebar> = ({navSections, children}) => {
           </Paper>
 
           <div className="col-span-11 xl:col-span-10 flex flex-col gap-3 h-full ">
-            <Paper classnames="h-20">
-              <p className="text-center">סרגל ניווט - יכיל סרגל חיפוש, שם עמוד ומעבר בין זמינות\כשירות</p>
-            </Paper>
+            {navbar}
           <Paper classnames="h-full p-3">
             {children}
           </Paper>
+          
           </div>
         </div>
       )

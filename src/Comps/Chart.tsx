@@ -89,11 +89,11 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
     const titles = (
       <>
         <div className="flex justify-between text-center">
-            <FastUpIcon className="text-success w-5 h-5"/>
+            {/* <FastUpIcon className="text-success w-6 h-6"/> */}
           <p className="text-white text-xl font-bold">{title}</p>
-          <button className="btn btn-primary">
+          {/* <button className="btn btn-circle btn-ghost w-6 h-6 p-2">
             <DiveIcon/>
-          </button>
+          </button> */}
         </div>
         <p className="">{description ? description : "מקט: 48930"}</p>
       </>

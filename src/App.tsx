@@ -10,6 +10,7 @@ import SettingsIcon from "./assets/settings.svg?react";
 import AboutIcon from "./assets/about.svg?react";
 import Sidebar from "./Comps/Sidebar";
 import Chart from "./Comps/Chart";
+import Paper from "./Comps/Paper";
 
 
 // https://rgbacolorpicker.com/hex-to-rgba
@@ -85,15 +86,28 @@ function App() {
   };
   const navSections = [generalNavSection, tableNavSection, adminNavSection];
 
+  const cards = (
+    <div className="flex items-start gap-6 flex-grow">
+      <Chart title='כשירות מרכבה 4' trueCount={2} falseCount={23} />
+      <Chart title="רנדומלי" trueCount={30} falseCount={49} redThres={20} yellowThres={60} description="תיאור לשעון מודולרי"/>
+  </div>
+  );
 
+  const footer = (
+    <Paper bgcolor="bg-base-200" classnames="h-16 flex items-center p-2">
+      <p className="text-white text-xl mr-12">תאריך עדכון אחרון: 13.11.23</p>
+      <div className="mr-auto flex gap-4">
+        <button className="btn btn-primary">תצוגת טבלה</button>
+        <button className="btn">מעבר לשעוני יחידות</button>
+      </div>
+  </Paper>
+  );
   return (
     <Sidebar navSections={navSections}>
-      <div className="flex items-start gap-6">
-        <Chart title='כשירות מרכבה 4' trueCount={2} falseCount={23} />
-        <Chart title="רנדומלי" trueCount={30} falseCount={49} redThres={20} yellowThres={60} description="תיאור לשעון מודולרי"/>
-
+      <div className="flex flex-col h-full">
+        {cards}
+        {footer}
       </div>
-
     </Sidebar>
   )
 
