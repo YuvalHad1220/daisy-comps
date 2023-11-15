@@ -1,5 +1,13 @@
 import { ReactNode } from "react";
 import Paper from "./Paper";
+import FastUpIcon from "../assets/up_fast.svg?react";
+import UpIcon from "../assets/up_slow.svg?react";
+import FastDownIcon from "../assets/down_fast.svg?react";
+import DownIcon from "../assets/down_slow.svg?react";
+import SameIcon from "../assets/same.svg?react"
+import DiveIcon from "../assets/up_left.svg?react"
+
+
 declare module "react" {
     // augment CSSProperties here
     interface CSSProperties {
@@ -19,6 +27,7 @@ interface iChart {
     trueCount: number,
     falseCount: number,
 }
+
 
 const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres = 80, trueCount, falseCount}) => {
     const value = Math.round(trueCount / (falseCount + trueCount) * 100);
@@ -80,9 +89,11 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
     const titles = (
       <>
         <div className="flex justify-between text-center">
-          <p className="text-xs">אחוזים לעומת שבוע שעבר </p>
+            <FastUpIcon className="text-success w-5 h-5"/>
           <p className="text-white text-xl font-bold">{title}</p>
-          <p className="text-xs">צלילה</p>
+          <button className="btn btn-primary">
+            <DiveIcon/>
+          </button>
         </div>
         <p className="">{description ? description : "מקט: 48930"}</p>
       </>
