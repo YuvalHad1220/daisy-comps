@@ -75,9 +75,9 @@ const NavItem = ({item} : {item: iNavItem}) => (
       <button className="btn btn-success">הוסף אתר איסוף</button>
 
       <div className="mr-auto flex gap-2 bg-base-100 rounded-2xl">
-        <button className="btn btn-ghost btn-sm rounded-2xl">סינון</button>
-        <button className="btn btn-ghost btn-sm rounded-2xl">עמודות</button>
-        <button className="btn btn-ghost btn-sm rounded-2xl">ציפוף שורות</button>
+        <button className="btn btn-sm btn-outline rounded-2xl">סינון</button>
+        <button className="btn btn-sm btn-outline rounded-2xl">עמודות</button>
+        <button className="btn  btn-sm btn-outline rounded-2xl">ציפוף שורות</button>
         <input type="text" placeholder="חפש" className="mr-auto input rounded-full input-sm w-42" />
 
       </div>
