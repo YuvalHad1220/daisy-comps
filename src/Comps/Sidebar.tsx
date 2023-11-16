@@ -73,9 +73,14 @@ const NavItem = ({item} : {item: iNavItem}) => (
       <p>טבלת זמינות - כלל צהל</p>
       <button className="btn btn-success">הוסף צ'</button>
       <button className="btn btn-success">הוסף אתר איסוף</button>
-      <button className="btn btn-success btn-outline">סינון</button>
-      <button className="btn btn-success btn-outline">עמודות</button>
-     <input type="text" placeholder="חפש" className="mr-auto input rounded-full input-sm w-42" />
+
+      <div className="mr-auto flex gap-2 bg-base-100 rounded-2xl">
+        <button className="btn btn-ghost btn-sm rounded-2xl">סינון</button>
+        <button className="btn btn-ghost btn-sm rounded-2xl">עמודות</button>
+        <button className="btn btn-ghost btn-sm rounded-2xl">ציפוף שורות</button>
+        <input type="text" placeholder="חפש" className="mr-auto input rounded-full input-sm w-42" />
+
+      </div>
 
     </Paper>
   )

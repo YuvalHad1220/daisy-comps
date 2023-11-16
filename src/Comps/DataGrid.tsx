@@ -124,9 +124,6 @@ const DataGrid = () => {
             <div>
                 עמוד 1 מתוך 200
             </div>
-            <div>
-                שורות בעמוד: 
-            </div>
         </div>
     );
     return (
