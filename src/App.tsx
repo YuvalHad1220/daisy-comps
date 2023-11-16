@@ -1,4 +1,4 @@
-import {iNavItem, iNavSection} from "../interfaces";
+import {iMenuTreeItem, iNavItem, iNavSection} from "../interfaces";
 import HomepageIcon from "./assets/homepage.svg?react";
 import ZminotTatYehidotIcon from "./assets/zminot_tat_yehidot.svg?react";
 import ScreensIcon from "./assets/screens.svg?react";
@@ -11,6 +11,7 @@ import AboutIcon from "./assets/about.svg?react";
 import Sidebar from "./Comps/Sidebar";
 import Chart from "./Comps/Chart";
 import Paper from "./Comps/Paper";
+import MenuTree from "./Comps/MenuTree";
 
 
 // https://rgbacolorpicker.com/hex-to-rgba
@@ -93,6 +94,44 @@ function App() {
   </div>
   );
 
+  const data : iMenuTreeItem = {
+    text: "כל המאגדים",
+    items: [
+        {
+            text: "טכנולוגיות",
+            items: []
+        },
+        {
+            text: "נגמשים",
+            items: [
+                {
+                    text: "איתן",
+                    items: [
+                        {
+                            text: "מקט 313"
+                        }
+                    ]
+                },
+                {
+                    text: "נמר",
+                    items: [
+                        {
+                            text: "מקט 212"
+                        },
+                        {
+                            text: "מקט 3301"
+                        },
+                        {
+                            text: "מקט נמר עג זיו"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+
   const footer = (
     <Paper bgcolor="bg-base-200" classnames="h-16 flex items-center p-2">
       <p className="text-white text-xl mr-12">תאריך עדכון אחרון: 13.11.23</p>
@@ -106,6 +145,7 @@ function App() {
     <Sidebar navSections={navSections}>
       <div className="flex flex-col h-full">
         {cards}
+        <MenuTree menuTree={data}/>
         {footer}
       </div>
     </Sidebar>

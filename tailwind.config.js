@@ -13,7 +13,6 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    dir: "rtl",
     // themes: [{
     //   light: {
     //     ...require("daisyui/src/theming/themes")["[data-theme=light]"],

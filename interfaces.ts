@@ -11,3 +11,8 @@ export interface iNavSection {
     items: iNavItem[]
   }
   
+
+export interface iMenuTreeItem {
+  text: string,
+  items?: iMenuTreeItem[]
+}

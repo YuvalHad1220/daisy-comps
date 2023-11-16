@@ -95,7 +95,7 @@ const Chart: React.FC<iChart> = ({title, description, redThres = 40, yellowThres
             <DiveIcon/>
           </button> */}
         </div>
-        <p className="">{description ? description : "מקט: 48930"}</p>
+        <p>{description ? description : "מקט: 48930"}</p>
       </>
     );
 
