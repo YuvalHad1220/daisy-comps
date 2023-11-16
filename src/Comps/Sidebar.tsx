@@ -5,7 +5,7 @@ import AddUserIcon from "../assets/add_user.svg?react";
 import ToTeneTableIcon from "../assets/to_tene_table.svg?react";
 import HomepageIcon from "../assets/homepage.svg?react";
 import { ReactNode } from "react";
-import Paper from "./Paper";
+import Paper, { PaperAsNavbar } from "./Paper";
 
 interface iSidebar {
     navSections: iNavSection[],
@@ -57,17 +57,28 @@ const NavItem = ({item} : {item: iNavItem}) => (
   </button>
   );
 
+  // const navbar = (
+  //   <Paper classnames="h-20 flex w-full items-center px-3">
+  //     <p className="text-white text-lg font-bold">מאגדי על \ מאגדים \ מקט</p>
+  //     <input type="text" placeholder="חפש" className="mr-auto ml-8 input rounded-full input-sm w-42" />
+  //     <div className="rounded-full bg-base-100">
+  //       <button className="btn rounded-full btn-sm btn-primary ml-1">זמינות</button>
+  //       <button className="rounded-full btn btn-sm btn-ghost mr-1">כשירות</button>
+  //     </div>
+  //   </Paper>
+  // )
+
   const navbar = (
-    <Paper classnames="h-20 flex w-full items-center px-3">
-      <p className="text-white text-lg font-bold">מאגדי על \ מאגדים \ מקט</p>
-      <input type="text" placeholder="חפש" className="mr-auto ml-8 input rounded-full input-sm w-42" />
-      <div className="rounded-full bg-base-100">
-        <button className="btn rounded-full btn-sm btn-primary ml-1">זמינות</button>
-        <button className="rounded-full btn btn-sm btn-ghost mr-1">כשירות</button>
-      </div>
+    <Paper classnames="h-20 flex w-full items-center px-6 gap-3">
+      <p>טבלת זמינות - כלל צהל</p>
+      <button className="btn btn-success">הוסף צ'</button>
+      <button className="btn btn-success">הוסף אתר איסוף</button>
+      <button className="btn btn-success btn-outline">סינון</button>
+      <button className="btn btn-success btn-outline">עמודות</button>
+     <input type="text" placeholder="חפש" className="mr-auto input rounded-full input-sm w-42" />
+
     </Paper>
   )
-
 
 const Sidebar: React.FC<iSidebar> = ({navSections, children}) => {
     return (

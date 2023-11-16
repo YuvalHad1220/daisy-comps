@@ -15,4 +15,5 @@ const Paper: React.FC<iPaper> = ({classnames = "", children, bgcolor = "bg-base-
     )
 };
 
+
 export default Paper;

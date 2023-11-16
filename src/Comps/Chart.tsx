@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import Paper from "./Paper";
-import FastUpIcon from "../assets/up_fast.svg?react";
-import UpIcon from "../assets/up_slow.svg?react";
-import FastDownIcon from "../assets/down_fast.svg?react";
-import DownIcon from "../assets/down_slow.svg?react";
-import SameIcon from "../assets/same.svg?react"
-import DiveIcon from "../assets/up_left.svg?react"
+// import FastUpIcon from "../assets/up_fast.svg?react";
+// import UpIcon from "../assets/up_slow.svg?react";
+// import FastDownIcon from "../assets/down_fast.svg?react";
+// import DownIcon from "../assets/down_slow.svg?react";
+// import SameIcon from "../assets/same.svg?react"
+// import DiveIcon from "../assets/up_left.svg?react"
 
 
 declare module "react" {

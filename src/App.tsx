@@ -12,6 +12,7 @@ import Sidebar from "./Comps/Sidebar";
 import Chart from "./Comps/Chart";
 import Paper from "./Comps/Paper";
 import MenuTree from "./Comps/MenuTree";
+import DataGrid from "./Comps/DataGrid";
 
 
 // https://rgbacolorpicker.com/hex-to-rgba
@@ -141,12 +142,32 @@ function App() {
       </div>
   </Paper>
   );
+
+
+  const chartsLogic = (
+    <>
+      {cards}
+      {footer}
+    </>
+  );
+
+  const menuTreeLogic = (
+    <>
+      <div className="flex-grow">
+      <MenuTree menuTree={data}/>
+      </div>
+    </>
+  );
+
+
+
+
+
+
   return (
     <Sidebar navSections={navSections}>
       <div className="flex flex-col h-full">
-        {cards}
-        <MenuTree menuTree={data}/>
-        {footer}
+        <DataGrid />
       </div>
     </Sidebar>
   )
