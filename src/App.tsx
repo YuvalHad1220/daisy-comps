@@ -15,6 +15,7 @@ import MenuTree from "./Comps/MenuTree";
 import DataGrid from "./Comps/DataGrid";
 import PrecentageTable from "./Comps/PrecentageTable";
 import DatePicker from "./Comps/DatePicker";
+import Form from "./Comps/Form";
 
 
 // https://rgbacolorpicker.com/hex-to-rgba
@@ -179,27 +180,29 @@ function App() {
       "gdod 12": { trueCount: 10, falseCount: 18 },
       "gdod 25": { trueCount: 30, falseCount: 5 },
       "gdod 30": { trueCount: 12, falseCount: 10 },
+      "gdod 19": { trueCount: 0, falseCount: 0 },
       "gdod 35": { trueCount: 7, falseCount: 15 },
       "gdod 22": { trueCount: 5, falseCount: 25 },
       "gdod 28": { trueCount: 18, falseCount: 8 },
       "gdod 18": { trueCount: 15, falseCount: 20 },
       "gdod 45": { trueCount: 20, falseCount: 15 },
-      "gdod 50": { trueCount: 12, falseCount: 22 },
+      "gdod 50": { trueCount: 12, falseCount: 0 },
     },
     nagmashim: {
       "gdod 5": { trueCount: 4, falseCount: 100 },
-      "gdod 20": { trueCount: 1, falseCount: 1 },
+      "gdod 20": { trueCount: 40, falseCount: 1 },
       "gdod 12": { trueCount: 8, falseCount: 22 },
       "gdod 18": { trueCount: 25, falseCount: 5 },
       "gdod 25": { trueCount: 60, falseCount: 20 },
+      "gdod 19": { trueCount: 12, falseCount: 8 },
       "gdod 15": { trueCount: 5, falseCount: 15 },
       "gdod 28": { trueCount: 10, falseCount: 30 },
       "gdod 32": { trueCount: 18, falseCount: 8 },
-      "gdod 40": { trueCount: 12, falseCount: 2 },
+      "gdod 40": { trueCount: 12, falseCount: 23 },
       "gdod 45": { trueCount: 20, falseCount: 15 },
       "gdod 22": { trueCount: 15, falseCount: 18 },
       "gdod 48": { trueCount: 12, falseCount: 25 },
-      "gdod 33": { trueCount: 5, falseCount: 10 },
+      "gdod 33": { trueCount: 95, falseCount: 10 },
       "gdod 55": { trueCount: 20, falseCount: 30 },
     },
     artillery: {
@@ -210,12 +213,14 @@ function App() {
       "gdod 35": { trueCount: 5, falseCount: 1 },
       "gdod 18": { trueCount: 22, falseCount: 12 },
       "gdod 26": { trueCount: 15, falseCount: 18 },
+      "gdod 15": { trueCount: 5, falseCount: 15 },
       "gdod 38": { trueCount: 8, falseCount: 25 },
+      "gdod 19": { trueCount: 12, falseCount: 8 },
       "gdod 42": { trueCount: 35, falseCount: 10 },
-      "gdod 50": { trueCount: 20, falseCount: 5 },
+      "gdod 50": { trueCount: 220, falseCount: 5 },
       "gdod 44": { trueCount: 12, falseCount: 15 },
       "gdod 52": { trueCount: 28, falseCount: 22 },
-      "gdod 60": { trueCount: 10, falseCount: 5 },
+      "gdod 60": { trueCount: 1, falseCount: 5 },
       "gdod 46": { trueCount: 18, falseCount: 10 },
       "gdod 58": { trueCount: 25, falseCount: 30 },
     },
@@ -223,8 +228,10 @@ function App() {
       "gdod 2": { trueCount: 3, falseCount: 7 },
       "gdod 7": { trueCount: 10, falseCount: 5 },
       "gdod 14": { trueCount: 5, falseCount: 2 },
+      "gdod 15": { trueCount: 5, falseCount: 1500 },
       "gdod 21": { trueCount: 8, falseCount: 15 },
       "gdod 28": { trueCount: 15, falseCount: 10 },
+      "gdod 19": { trueCount: 12, falseCount: 8 },
       "gdod 35": { trueCount: 20, falseCount: 5 },
     },
     bombs: {
@@ -232,8 +239,9 @@ function App() {
       "gdod 9": { trueCount: 15, falseCount: 5 },
       "gdod 16": { trueCount: 8, falseCount: 12 },
       "gdod 23": { trueCount: 25, falseCount: 30 },
+      "gdod 19": { trueCount: 12, falseCount: 8 },
       "gdod 30": { trueCount: 10, falseCount: 5 },
-      "gdod 37": { trueCount: 18, falseCount: 22 },
+      "gdod 37": { trueCount: 10008, falseCount: 22 },
     },
     missiles: {
       "gdod 5": { trueCount: 5, falseCount: 15 },
@@ -250,7 +258,8 @@ function App() {
     <Sidebar navSections={navSections}>
       {/* {chartsLogic} */}
       {/* <DatePicker /> */}
-      <PrecentageTable magadData={magadData} />
+      {/* <PrecentageTable magadData={magadData} /> */}
+      <Form />
     </Sidebar>
   )
 
