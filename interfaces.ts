@@ -16,3 +16,15 @@ export interface iMenuTreeItem {
   text: string,
   items?: iMenuTreeItem[]
 }
+
+export interface iUnitData {
+  trueCount: number;
+  falseCount: number;
+}
+
+export interface iMagadData {
+  [key: string]: {
+    [key: string]: iUnitData;
+  };
+}
+

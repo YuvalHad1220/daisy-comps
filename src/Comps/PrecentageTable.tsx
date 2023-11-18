@@ -1,139 +1,124 @@
-interface iMagadHeader {
-    [magadTitle: string]:{
-        [gdodTitle: string]: {
-            trueCount: number;
-            falseCount: number;
-            };
-        }
-  }
+import { iMagadData, iUnitData } from "../../interfaces";
 
-  interface iGdodHeader {
-    [gdodTitle: string]: string[]
-  }
+interface iPrecentageTable {
+    magadData: iMagadData
+}
+const PrecentageTable: React.FC<iPrecentageTable> = ({magadData}) => {
+
   
-const PrecentageTable = () => {
-
-
-    const rowHeaders: iMagadHeader = {
-        "טכנולוגיות": {
-            "גדוד 37": {
-                trueCount: 23,
-                falseCount: 12
-            }
-        },
-        "נגמשים": {
-            "גדוד 37": {
-                trueCount: 15,
-                falseCount: 30
-            },
-            "גדוד 40": {
-                trueCount: 19,
-                falseCount: 0
-            },
-            "גדוד 180": {
-                trueCount: 1,
-                falseCount: 200
-            }
-        },
-        "מעילי רוח": {
-            "גדוד 37": {
-                trueCount: 2,
-                falseCount: 20,
-            },
-            "גדוד 90": {
-                trueCount:11,
-                falseCount: 0
-            },
-            "גדוד 180": {
-                trueCount: 900,
-                falseCount: 1200
-            }
-        }
-    }
-
-    const columnHeaders: iGdodHeader = {
-        "גדוד 37": ["מעילי רוח", "נגמשים", "טכנולוגיות"],
-        "גדוד 180": ["מעילי רוח", "נגמשים"],
-        "גדוד 40": ["נגמשים"],
-        "גדוד 90": ["מעילי רוח"]
-    }
-
-    const columnKeys = Object.keys(columnHeaders);
-    const doesMagadContain = (key: string, magadName: string) => Object.keys(rowHeaders[magadName]).includes(key);
-    
-    columnKeys.map(columnKey => {
-        const gdodName = columnKey;
-        const magadsOfGdod = rowHeaders[gdodName];
-        Object.keys(magadsOfGdod).map(magadName => {
-            
-        })
-    });
-
-    Object.keys(rowHeaders).map(magadHeader => {
-        const magadName = magadHeader;
-        const gdodsList = rowHeaders[magadName];
-
-    });
-    
-    // const headers: iMagadHeader[] = [
-    //     {
-    //       title: "נגמשים",
-    //       options: {
-    //         "גדוד 4": { trueCount: 100, falseCount: 200 },
-    //         "גדוד 12": { trueCount: 1, falseCount: 0 },
-    //         "גדוד 759": { trueCount: 0, falseCount: 200 },
-    //       },
-    //     },
-    //     {
-    //       title: "טנקים",
-    //       options: {
-    //         "גדוד 4": { trueCount: 0, falseCount: 1 },
-    //         "גדוד 990": { trueCount: 3, falseCount: 120 },
-    //       },
-    //     },
-    //   ];
-
-    
-    //   const colHeaders = Array.from(
-    //     new Set(headers.flatMap((item) => Object.keys(item.options)))
-    //   );
+    // Extract unique gdods
+    const units: string[] = Array.from(
+      new Set(
+        Object.keys(magadData).flatMap((rowHeader) => Object.keys(magadData[rowHeader]))
+      )
+    );
   
+    const getTotalCount = (unit: string) => {
+      let totalTrueCount = 0;
+      let totalFalseCount = 0;
+  
+      Object.keys(magadData).forEach((rowHeader) => {
+        const carData = magadData[rowHeader][unit];
+        if (carData) {
+          totalTrueCount += carData.trueCount;
+          totalFalseCount += carData.falseCount;
+        }
+      });
+  
+      return { trueCount: totalTrueCount, falseCount: totalFalseCount };
+    };
+
+    const sumForMagad = (magad: string) => {
+        const magadalData = magadData[magad];
+        
+        if (!magadalData) {
+          return { trueCount: 0, falseCount: 0 };
+        }
+      
+        const gdodTotals = Object.keys(magadalData).reduce((totals, gdod) => {
+          const tankData = magadalData[gdod];
+          if (tankData) {
+            totals.trueCount += tankData.trueCount;
+            totals.falseCount += tankData.falseCount;
+          }
+          return totals;
+        }, { trueCount: 0, falseCount: 0 });
+      
+        return gdodTotals;
+      };
+
+    
+    const FormattedData = ({ data }: { data?: iUnitData }) => {
+      if (!data) {
+        return (
+          <div className="font-bold text-center">
+            X
+          </div>
+        );
+      }
+  
+    const { trueCount, falseCount } = data;
+    const percentage = (trueCount / (trueCount + falseCount)) * 100;
+    const displayValue = `${trueCount}/${trueCount + falseCount}`;
+
+    const colorClass = percentage < 20 ? 'text-error' : percentage < 80 ? 'text-warning' : 'text-success';
     return (
-        <>
-        <table className="table">
-            <thead>
-                <tr>
-                    {/*empty cell for coulmn headers*/}
-                    <th></th>
-                    {headers.map(header => <th key={header.title}>{header.title}</th>)}
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    colHeaders.map(colHeader => ())
-                }
-                {/* {headers.map((magad) => (
-                    <tr key={magad.title}>
-                    <th>{magad.title}</th>
-                    {colHeaders.map((colHeader) => {
-                        const matchingOption = magad.options[colHeader];
+        <div className={`text-center ${colorClass}`}>
+            <p className="font-bold">{percentage.toFixed(2)}%</p>
+            <p>{displayValue}</p>
+        </div>
+      );
+    };
+  
+    const rowTotals = Object.keys(magadData).reduce((totals, rowHeader) => {
+        const magadalTotals = sumForMagad(rowHeader);
+        totals.trueCount += magadalTotals.trueCount;
+        totals.falseCount += magadalTotals.falseCount;
+        return totals;
+      }, { trueCount: 0, falseCount: 0 });
 
-                        if (matchingOption) {
-                        // Display true count as a percentage
-                        const trueCountPercentage = (matchingOption.trueCount / (matchingOption.trueCount + matchingOption.falseCount)) * 100;
-                        return <td key={colHeader}>{`${trueCountPercentage.toFixed(2)}%`}</td>;
-                        }
 
-                        return <td key={colHeader}>-</td>; // Placeholder for missing data
-                    })}
-                    </tr>
-                ))} */}
-            </tbody>  
-        </table>
-        </>
-    )
-    
-
-};
-
-export default PrecentageTable;
+    return (
+      <table className="table table-pin-rows table-pin-cols">
+        <thead>
+          <tr className="text-sm text-white">
+            <th></th>
+            {Object.keys(magadData).map((rowHeader) => (
+              <th key={rowHeader}>{rowHeader}</th>
+            ))}
+            <th>הכל</th>
+          </tr>
+        </thead>
+        <tbody>
+          {units.map((gdod) => (
+            <tr key={gdod}>
+              <th className="text-white">{gdod}</th>
+              {Object.keys(magadData).map((rowHeader) => {
+                const data = magadData[rowHeader][gdod];
+                return (
+                  <td key={rowHeader}>
+                    <FormattedData data={data} />
+                  </td>
+                );
+              })}
+              <td>
+                <FormattedData data={getTotalCount(gdod)} />
+              </td>
+            </tr>
+          ))}
+          <tr>
+            <th className="text-white">הכל</th>
+            {Object.keys(magadData).map((rowHeader) => (
+              <td key={rowHeader}>
+                <FormattedData data={sumForMagad(rowHeader)} />
+              </td>
+            ))}
+            <td><FormattedData data={rowTotals} /></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
+  
+  export default PrecentageTable;
+  

@@ -1,4 +1,4 @@
-import {iMenuTreeItem, iNavItem, iNavSection} from "../interfaces";
+import {iMenuTreeItem, iNavItem, iNavSection, iMagadData} from "../interfaces";
 import HomepageIcon from "./assets/homepage.svg?react";
 import ZminotTatYehidotIcon from "./assets/zminot_tat_yehidot.svg?react";
 import ScreensIcon from "./assets/screens.svg?react";
@@ -167,12 +167,90 @@ function App() {
       <DataGrid />
     </div>
   );
-
+  
+  const magadData: iMagadData = {
+    tanks: {
+      "gdod 4": { trueCount: 4, falseCount: 20 },
+      "gdod 3": { trueCount: 200, falseCount: 12 },
+      "gdod 20": { trueCount: 100, falseCount: 0 },
+      "gdod 10": { trueCount: 15, falseCount: 30 },
+      "gdod 15": { trueCount: 50, falseCount: 10 },
+      "gdod 8": { trueCount: 8, falseCount: 25 },
+      "gdod 12": { trueCount: 10, falseCount: 18 },
+      "gdod 25": { trueCount: 30, falseCount: 5 },
+      "gdod 30": { trueCount: 12, falseCount: 10 },
+      "gdod 35": { trueCount: 7, falseCount: 15 },
+      "gdod 22": { trueCount: 5, falseCount: 25 },
+      "gdod 28": { trueCount: 18, falseCount: 8 },
+      "gdod 18": { trueCount: 15, falseCount: 20 },
+      "gdod 45": { trueCount: 20, falseCount: 15 },
+      "gdod 50": { trueCount: 12, falseCount: 22 },
+    },
+    nagmashim: {
+      "gdod 5": { trueCount: 4, falseCount: 100 },
+      "gdod 20": { trueCount: 1, falseCount: 1 },
+      "gdod 12": { trueCount: 8, falseCount: 22 },
+      "gdod 18": { trueCount: 25, falseCount: 5 },
+      "gdod 25": { trueCount: 60, falseCount: 20 },
+      "gdod 15": { trueCount: 5, falseCount: 15 },
+      "gdod 28": { trueCount: 10, falseCount: 30 },
+      "gdod 32": { trueCount: 18, falseCount: 8 },
+      "gdod 40": { trueCount: 12, falseCount: 2 },
+      "gdod 45": { trueCount: 20, falseCount: 15 },
+      "gdod 22": { trueCount: 15, falseCount: 18 },
+      "gdod 48": { trueCount: 12, falseCount: 25 },
+      "gdod 33": { trueCount: 5, falseCount: 10 },
+      "gdod 55": { trueCount: 20, falseCount: 30 },
+    },
+    artillery: {
+      "gdod 8": { trueCount: 10, falseCount: 15 },
+      "gdod 14": { trueCount: 30, falseCount: 5 },
+      "gdod 22": { trueCount: 12, falseCount: 8 },
+      "gdod 30": { trueCount: 18, falseCount: 2 },
+      "gdod 35": { trueCount: 5, falseCount: 1 },
+      "gdod 18": { trueCount: 22, falseCount: 12 },
+      "gdod 26": { trueCount: 15, falseCount: 18 },
+      "gdod 38": { trueCount: 8, falseCount: 25 },
+      "gdod 42": { trueCount: 35, falseCount: 10 },
+      "gdod 50": { trueCount: 20, falseCount: 5 },
+      "gdod 44": { trueCount: 12, falseCount: 15 },
+      "gdod 52": { trueCount: 28, falseCount: 22 },
+      "gdod 60": { trueCount: 10, falseCount: 5 },
+      "gdod 46": { trueCount: 18, falseCount: 10 },
+      "gdod 58": { trueCount: 25, falseCount: 30 },
+    },
+    guns: {
+      "gdod 2": { trueCount: 3, falseCount: 7 },
+      "gdod 7": { trueCount: 10, falseCount: 5 },
+      "gdod 14": { trueCount: 5, falseCount: 2 },
+      "gdod 21": { trueCount: 8, falseCount: 15 },
+      "gdod 28": { trueCount: 15, falseCount: 10 },
+      "gdod 35": { trueCount: 20, falseCount: 5 },
+    },
+    bombs: {
+      "gdod 3": { trueCount: 2, falseCount: 8 },
+      "gdod 9": { trueCount: 15, falseCount: 5 },
+      "gdod 16": { trueCount: 8, falseCount: 12 },
+      "gdod 23": { trueCount: 25, falseCount: 30 },
+      "gdod 30": { trueCount: 10, falseCount: 5 },
+      "gdod 37": { trueCount: 18, falseCount: 22 },
+    },
+    missiles: {
+      "gdod 5": { trueCount: 5, falseCount: 15 },
+      "gdod 12": { trueCount: 20, falseCount: 10 },
+      "gdod 19": { trueCount: 12, falseCount: 8 },
+      "gdod 26": { trueCount: 8, falseCount: 5 },
+      "gdod 33": { trueCount: 15, falseCount: 20 },
+      "gdod 40": { trueCount: 30, falseCount: 5 },
+    },
+  };
+  
 
   return (
     <Sidebar navSections={navSections}>
       {/* {chartsLogic} */}
-      <DatePicker />
+      {/* <DatePicker /> */}
+      <PrecentageTable magadData={magadData} />
     </Sidebar>
   )
 
