@@ -13,6 +13,8 @@ import Chart from "./Comps/Chart";
 import Paper from "./Comps/Paper";
 import MenuTree from "./Comps/MenuTree";
 import DataGrid from "./Comps/DataGrid";
+import PrecentageTable from "./Comps/PrecentageTable";
+import DatePicker from "./Comps/DatePicker";
 
 
 // https://rgbacolorpicker.com/hex-to-rgba
@@ -145,30 +147,32 @@ function App() {
 
 
   const chartsLogic = (
-    <>
+    <div className="h-full flex flex-col">
       {cards}
       {footer}
-    </>
+    </div>
   );
 
   const menuTreeLogic = (
-    <>
-      <div className="flex-grow">
+    <div className="flex-grow">
       <MenuTree menuTree={data}/>
-      </div>
-    </>
+    </div>
+    
   );
 
 
 
-
+  const dataGrid = (
+    <div className="flex flex-col h-full">
+      <DataGrid />
+    </div>
+  );
 
 
   return (
     <Sidebar navSections={navSections}>
-      <div className="flex flex-col h-full">
-        <DataGrid />
-      </div>
+      {/* {chartsLogic} */}
+      <DatePicker />
     </Sidebar>
   )
 
