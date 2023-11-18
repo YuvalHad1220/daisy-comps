@@ -1,31 +1,41 @@
-import { MouseEvent, useState } from 'react';
-import { useDatePicker,  } from '@rehookify/datepicker';
+import { useState } from 'react';
+import { useDatePicker, DPDay } from '@rehookify/datepicker';
+import classnames from "classnames";
 
 const DatePicker = () => {
-  const [selectedDates, onDatesChange] = useState<Date[]>([]);
+    const [selectedDates, onDatesChange] = useState<Date[]>([]);
 
-  const res = useDatePicker({selectedDates, onDatesChange, locale: {locale: "he-IL"}, dates: {mode: "range", }});
-  const calendars = res.data.calendars;
-  const formattedDates = res.data.formattedDates;
+    const res = useDatePicker({selectedDates, onDatesChange, locale: {locale: "he-IL"}, dates: {mode: "range", selectSameDate: true,}, calendar: {
+        offsets: [-1]
+    }});
+    const [_, calendar] = res.data.calendars;
+    const {days, month, year} = calendar;
+    const formattedDates = res.data.formattedDates;
+    const subStractProps = res.propGetters.subtractOffset;
+    const addProps = res.propGetters.addOffset;
+    
+    const [start, end] = formattedDates;
 
-//   console.log(res.data.weekDays)
-    const calendar = calendars[0];
-    console.log(calendar);
+  const rangeBtnClassnames = (dayObj: DPDay) => {
+    return classnames("btn" ,{"btn-primary": dayObj.range || dayObj.selected}, {"btn-disabled": !(dayObj.inCurrentMonth || dayObj.range || dayObj.selected) || dayObj.disabled})
+  }
 
-  const [start, end] = formattedDates;
-  console.log(formattedDates);
   return (
     <div>
-        <p className="text-primary">עומדים להראות פה תאריכים!</p>
-        <div className="grid grid-cols-7 text-center gap-4">
+        <p className="text-primary">חודש נוכחי: {month}</p>
+        <p className="text-primary">שנה נוכחית: {year}</p>
+        <div className="grid grid-cols-7 text-center gap-2">
             {res.data.weekDays.map(item => <p className="font-bold" key={item}>{item}</p>)}
-            {calendar.days.map(dayObj => (
-                <button className={`btn ${dayObj.inCurrentMonth ? "btn-primary" : "disabled"}`} key={dayObj.day} {...res.propGetters.dayButton(dayObj)}>
+            {days.map(dayObj => (
+                <button className={rangeBtnClassnames(dayObj)} key={dayObj.$date.toString()} {...res.propGetters.dayButton(dayObj)}>
                     {dayObj.day}
                 </button>
             ))}
-            {JSON.stringify(formattedDates)};
         </div>
+        <p className='text-white font-bold'>תאריך ראשון: {start}</p>
+        <p className='text-white font-bold'>תאריך שני: {end}</p>
+        <button className='btn' {...subStractProps({months: 1})}>חודש קודם</button>
+        <button className='btn' {...addProps({months: 1})}>חודש הבא</button>
     </div>
   )
 }
